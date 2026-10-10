@@ -301,6 +301,26 @@
     showTrack();
   }
 
+  /* ---------- 联系方式：点击 QQ 图标时复制 QQ 号 ---------- */
+  var toastEl, toastTimer;
+  function toast(text) {
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (a) {
+    a.addEventListener('click', function () {
+      var text = a.getAttribute('data-copy');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { toast('QQ 号 ' + text + ' 已复制'); }, function () { toast('QQ 号：' + text); });
+      } else {
+        toast('QQ 号：' + text);
+      }
+    });
+  });
+
   /* ---------- 文章目录高亮 ---------- */
   var tocLinks = document.querySelectorAll('.toc-link');
   if (tocLinks.length && 'IntersectionObserver' in window) {

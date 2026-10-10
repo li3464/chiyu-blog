@@ -598,6 +598,36 @@ a.page-link:hover { border-color: var(--orange); color: var(--orange); }
 .markdown .title, .markdown .function, .markdown .built_in { color: #f7d7b5; }
 .markdown .attr, .markdown .attribute, .markdown .variable { color: #e8b48a; }
 
+/* 联系方式图标（{% social %}） */
+.social { display: flex; flex-wrap: wrap; gap: 14px; margin: .4em 0 1.4em; }
+.markdown a.social-link, .social-link {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 20px 10px 12px; border-radius: 16px;
+  background: var(--paper-2); border: 1px solid var(--line);
+  color: var(--ink); line-height: 1.35;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.social-link.is-qq { --brand: #12b7f5; }
+.social-link.is-bili { --brand: #fb7299; }
+.markdown a.social-link:hover, .social-link:hover { transform: translateY(-2px); border-color: var(--brand, var(--orange)); box-shadow: 0 10px 24px -14px var(--brand, var(--orange)); }
+.social-icon {
+  width: 42px; height: 42px; padding: 9px; border-radius: 12px; flex: none;
+  color: #fff; background: var(--brand, var(--orange));
+}
+.social-text { display: flex; flex-direction: column; }
+.social-text b { font-size: 15px; }
+.social-text small { font-size: 12.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+.toast {
+  position: fixed; z-index: 70; left: 50%; bottom: 28px; translate: -50% 0;
+  padding: 10px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); font-size: 14px;
+  box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(10px); transition: opacity .25s, transform .25s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: none; }
+
 .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2em; }
 .article-note { margin: 22px 0 0; padding: 14px 18px; border-radius: 14px; background: var(--paper-2); font-size: 14px; }
 .article-note div { display: grid; grid-template-columns: 5em minmax(0, 1fr); gap: 10px; }

@@ -60,6 +60,15 @@ player:
     - { title: 书页间的八音盒, artist: 池鱼, src: '' }
     - { title: 午后的图书馆, artist: 池鱼, src: '' }
 
+# 联系方式图标（在文章或页面里写 {% social %} 显示）。留空的项不显示
+social:
+  # QQ 号。点击图标会打开 QQ 对话，同时把 QQ 号复制到剪贴板
+  qq: '3510249248'
+  # B站 UID：打开自己的个人空间，网址 space.bilibili.com/ 后面那串数字
+  bilibili: '3706952859257526'
+  # 可选：显示在 B站 图标旁的昵称
+  bilibili_name: '池鱼爱摸鱼'
+
 # 字体样式表。国内访问慢可以把域名换成 fonts.loli.net
 fonts: https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Noto+Serif+SC:wght@500;700&family=ZCOOL+QingKe+HuangYou&display=swap
 
