@@ -301,7 +301,12 @@
     showTrack();
   }
 
-  /* ---------- 联系方式：点击 QQ 图标时复制 QQ 号 ---------- */
+  /* ---------- 联系方式：手机上换成手机 QQ 的链接；点击 QQ 图标时复制 QQ 号 ---------- */
+  if (/Android|iPhone|iPad|iPod|HarmonyOS|Mobile/i.test(navigator.userAgent)) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-mobile-href]'), function (a) {
+      a.setAttribute('href', a.getAttribute('data-mobile-href'));
+    });
+  }
   var toastEl, toastTimer;
   function toast(text) {
     if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
@@ -314,7 +319,7 @@
     a.addEventListener('click', function () {
       var text = a.getAttribute('data-copy');
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { toast('QQ 号 ' + text + ' 已复制'); }, function () { toast('QQ 号：' + text); });
+        navigator.clipboard.writeText(text).then(function () { toast('QQ 号 ' + text + ' 已复制，没弹出 QQ 的话可以在 QQ 里搜索添加'); }, function () { toast('QQ 号：' + text); });
       } else {
         toast('QQ 号：' + text);
       }

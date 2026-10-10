@@ -16,8 +16,11 @@ hexo.extend.tag.register('social', function () {
 
   const qq = String(s.qq || '').trim();
   if (qq) {
-    items.push('<a class="social-link is-qq" href="https://wpa.qq.com/msgrd?v=3&amp;uin=' + esc(qq) + '&amp;site=qq&amp;menu=yes" ' +
-      'target="_blank" rel="noopener" data-copy="' + esc(qq) + '" title="打开 QQ 对话（同时复制 QQ 号）">' +
+    // 电脑端打开 QQ「添加好友」窗口；手机端由 main.js 换成 data-mobile-href，打开资料卡加好友
+    const pc = 'tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=' + esc(qq);
+    const mobile = 'mqqapi://card/show_pslcard?src_type=internal&amp;version=1&amp;card_type=person&amp;source=sharecard&amp;uin=' + esc(qq);
+    items.push('<a class="social-link is-qq" href="' + pc + '" data-mobile-href="' + mobile + '" ' +
+      'data-copy="' + esc(qq) + '" title="添加 QQ 好友（同时复制 QQ 号）">' +
       svg('qq') + '<span class="social-text"><b>QQ</b><small>' + esc(qq) + '</small></span></a>');
   }
 
