@@ -1,0 +1,60 @@
+<%
+var menu = theme.menu || [];
+var here = url_for(page.path || '').replace(/index\.html$/, '');
+function isActive(item) {
+  if (item.children) return item.children.some(isActive);
+  if (item.url === '/') return is_home();
+  return here.indexOf(url_for(item.url)) === 0;
+}
+var mascotImg = url_for(theme.mascot.image);
+%>
+<header class="nav" id="nav">
+  <div class="nav-bar">
+    <a class="brand" href="<%= url_for('/') %>">
+      <span class="face brand-face" style="background-image:url('<%= mascotImg %>')" aria-hidden="true"></span>
+      <span class="brand-text">
+        <b><%= config.title %></b>
+        <small><%= theme.hero.subtitle %></small>
+      </span>
+    </a>
+
+    <nav class="menu" id="menu" aria-label="主导航">
+      <ul class="menu-list">
+        <% menu.forEach(function (item) { %>
+          <li class="menu-item<%= item.children ? ' has-sub' : '' %><%= isActive(item) ? ' active' : '' %>">
+            <% if (item.children) { %>
+              <button class="menu-link" type="button" aria-expanded="false">
+                <%- icon(item.icon || 'book') %><span class="menu-label"><%= item.name %></span><%- icon('chevron', 'caret') %>
+              </button>
+              <ul class="sub">
+                <% item.children.forEach(function (child) { %>
+                  <li><a class="sub-link<%= isActive(child) ? ' active' : '' %>" href="<%= url_for(child.url) %>"><%- icon(child.icon || 'link') %><%= child.name %></a></li>
+                <% }); %>
+              </ul>
+            <% } else { %>
+              <a class="menu-link" href="<%= url_for(item.url) %>"><%- icon(item.icon || 'link') %><span class="menu-label"><%= item.name %></span></a>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="search" id="search">
+        <label class="search-box">
+          <%- icon('search') %>
+          <span class="sr-only">搜索文章</span>
+          <input id="search-input" type="search" placeholder="搜索…" autocomplete="off">
+        </label>
+        <div class="search-panel" id="search-panel" hidden></div>
+      </div>
+      <button class="mode" id="theme-toggle" type="button" aria-label="切换白天 / 夜晚" title="切换白天 / 夜晚">
+        <span class="mode-stars" aria-hidden="true"></span>
+        <span class="mode-knob" aria-hidden="true"></span>
+      </button>
+      <button class="burger" id="burger" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="menu">
+        <%- icon('menu', 'i-open') %><%- icon('close', 'i-close') %>
+      </button>
+    </div>
+  </div>
+</header>

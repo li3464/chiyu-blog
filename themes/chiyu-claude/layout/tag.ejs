@@ -1,0 +1,15 @@
+<% if (page.tag) { %>
+  <%- partial('_partial/post-list', { posts: page.posts }) %>
+  <%- partial('_partial/pagination') %>
+<% } else { %>
+  <section class="card">
+    <div class="taxonomy-list">
+      <% site.tags.sort('name').each(function (tag) { %>
+        <a class="taxonomy-item" href="<%= url_for(tag.path) %>">
+          <%- icon('tag') %><span class="taxonomy-name">#<%= tag.name %></span>
+          <span class="taxonomy-count"><%= tag.length %> 篇</span>
+        </a>
+      <% }); %>
+    </div>
+  </section>
+<% } %>

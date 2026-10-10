@@ -1,0 +1,31 @@
+<div class="post-list">
+  <% posts.each(function (post) { %>
+    <article class="post-card">
+      <a class="post-date" href="<%= url_for(post.path) %>" tabindex="-1" aria-hidden="true">
+        <span class="post-day"><%= date(post.date, 'DD') %></span>
+        <span class="post-ym"><%= date(post.date, 'YYYY.MM') %></span>
+      </a>
+      <div class="post-body">
+        <div class="post-top">
+          <% if (post.categories && post.categories.length) { %>
+            <% post.categories.each(function (cat) { %>
+              <a class="cat-chip" href="<%= url_for(cat.path) %>"><%= cat.name %></a>
+            <% }); %>
+          <% } %>
+          <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, config.date_format) %></time>
+          <span><%- icon('clock') %>约 <%= reading_minutes(post.content) %> 分钟</span>
+        </div>
+        <h2 class="post-title"><a href="<%= url_for(post.path) %>"><%= post.title %></a></h2>
+        <p class="post-excerpt"><%= truncate(strip_html(post.excerpt || post.content), { length: 120, omission: '…' }) %></p>
+        <div class="post-foot">
+          <div class="post-tags">
+            <% if (post.tags && post.tags.length) { post.tags.each(function (tag) { %>
+              <a href="<%= url_for(tag.path) %>">#<%= tag.name %></a>
+            <% }); } %>
+          </div>
+          <a class="read-more" href="<%= url_for(post.path) %>">阅读全文 <%- icon('arrow') %></a>
+        </div>
+      </div>
+    </article>
+  <% }); %>
+</div>

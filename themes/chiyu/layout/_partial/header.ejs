@@ -1,0 +1,28 @@
+<%
+var menu = theme.menu || {};
+function isActive(key) {
+  if (key === '/') return is_home();
+  if (key === '/archives/') return is_archive();
+  if (key === '/categories/') return is_category();
+  if (key === '/tags/') return is_tag();
+  if (page.path) return ('/' + page.path).replace(/index\.html$/, '') === url_for(key).replace(/index\.html$/, '');
+  return false;
+}
+%>
+<header class="site-header">
+  <div class="masthead">
+    <a class="brand" href="<%= url_for('/') %>">
+      <span class="seal" aria-hidden="true">池鱼</span>
+      <span class="brand-text">
+        <span class="brand-title"><%= config.title %></span>
+        <% if (config.subtitle) { %><span class="brand-subtitle"><%= config.subtitle %></span><% } %>
+      </span>
+    </a>
+  </div>
+  <nav class="site-nav">
+    <% for (var key in menu) { %>
+      <a class="nav-link<%= isActive(key) ? ' active' : '' %>" href="<%= url_for(key) %>"><%= menu[key] %></a>
+    <% } %>
+  </nav>
+  <div class="ink-divider" aria-hidden="true"></div>
+</header>

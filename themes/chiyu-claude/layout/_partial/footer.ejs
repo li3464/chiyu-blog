@@ -1,0 +1,15 @@
+<% var since = (theme.footer && theme.footer.since) || new Date().getFullYear(); var now = new Date().getFullYear(); %>
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-brand"><%= config.title %></p>
+    <p class="footer-line"><%= config.subtitle %></p>
+    <p class="footer-copy">
+      © <%= since %><%= since < now ? '–' + now : '' %> <a href="<%= url_for('/') %>"><%= config.title %></a>
+      <% if (config.author) { %> · <%= config.author %><% } %> · 看板娘 <%= theme.mascot.name %>
+    </p>
+    <% if (theme.footer && theme.footer.icp) { %>
+      <p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"><%= theme.footer.icp %></a></p>
+    <% } %>
+    <p class="footer-powered">由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 · 主题「池鱼 · Claude」</p>
+  </div>
+</footer>

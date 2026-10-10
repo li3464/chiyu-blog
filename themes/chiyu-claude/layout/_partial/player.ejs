@@ -1,0 +1,19 @@
+<% var first = (theme.player.tracks && theme.player.tracks[0]) || { title: '书页间的八音盒', artist: config.author }; %>
+<div class="player" id="player">
+  <div class="player-card">
+    <span class="player-disc" aria-hidden="true">
+      <span class="face disc-face" style="background-image:url('<%= url_for(theme.mascot.image) %>')"></span>
+    </span>
+    <div class="player-info">
+      <b id="player-title"><%= first.title %></b>
+      <span id="player-artist"><%= first.artist %></span>
+    </div>
+    <div class="player-ctrl">
+      <button type="button" id="player-prev" aria-label="上一首"><%- icon('prev') %></button>
+      <button type="button" id="player-play" class="player-play" aria-label="播放"><%- icon('play', 'i-play') %><%- icon('pause', 'i-pause') %></button>
+      <button type="button" id="player-next" aria-label="下一首"><%- icon('next') %></button>
+    </div>
+    <span class="player-bar" aria-hidden="true"><span id="player-progress"></span></span>
+  </div>
+  <button type="button" class="player-fold" id="player-fold" aria-label="收起播放器" aria-expanded="true"><%- icon('chevron-left') %></button>
+</div>

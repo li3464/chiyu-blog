@@ -1,0 +1,34 @@
+<%
+var eyebrow, title;
+if (is_post()) { eyebrow = 'POST'; title = page.title; }
+else if (is_home()) { eyebrow = 'PAGE ' + page.current; title = '最新文章 · 第 ' + page.current + ' 页'; }
+else if (is_archive()) { eyebrow = 'ARCHIVES'; title = '归档'; }
+else if (page.category) { eyebrow = 'CATEGORY'; title = '分类 · ' + page.category; }
+else if (page.tag) { eyebrow = 'TAG'; title = '标签 · #' + page.tag; }
+else if (page.base === 'categories/') { eyebrow = 'CATEGORIES'; title = '分类'; }
+else if (page.base === 'tags/') { eyebrow = 'TAGS'; title = '标签'; }
+else { eyebrow = 'PAGE'; title = page.title || config.title; }
+%>
+<section class="banner">
+  <div class="banner-scene" aria-hidden="true">
+    <%- partial('_partial/magic-circle', { id: 'banner' }) %>
+  </div>
+  <div class="banner-inner">
+    <p class="eyebrow"><%= eyebrow %></p>
+    <h1 class="banner-title"><%= title %></h1>
+    <% if (is_post()) { %>
+      <div class="banner-meta">
+        <span><%- icon('calendar') %><time datetime="<%= date(page.date, 'YYYY-MM-DD') %>"><%= date(page.date, config.date_format) %></time></span>
+        <% if (page.categories && page.categories.length) { %>
+          <span><%- icon('folder') %><% page.categories.each(function (cat, i) { %><a href="<%= url_for(cat.path) %>"><%= cat.name %></a><% }); %></span>
+        <% } %>
+        <span><%- icon('clock') %>约 <%= reading_minutes(page.content) %> 分钟</span>
+      </div>
+    <% } else if (is_archive()) { %>
+      <div class="banner-meta"><span>共 <%= site.posts.length %> 篇文章</span></div>
+    <% } %>
+  </div>
+  <div class="banner-mascot" aria-hidden="true">
+    <img src="<%= url_for(theme.mascot.image) %>" alt="" width="804" height="1440" decoding="async">
+  </div>
+</section>

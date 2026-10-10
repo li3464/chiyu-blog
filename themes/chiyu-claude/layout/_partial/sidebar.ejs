@@ -1,0 +1,60 @@
+<% var mascot = theme.mascot || {}; var tocHtml = is_post() ? toc(page.content, { list_number: false, max_depth: 3 }) : ''; %>
+<aside class="sidebar" id="about-card">
+  <section class="card profile">
+    <span class="profile-cover" aria-hidden="true"></span>
+    <span class="face profile-face" style="background-image:url('<%= url_for(mascot.image) %>')" aria-hidden="true"></span>
+    <h2 class="profile-name"><%= config.author %></h2>
+    <p class="profile-desc"><%= config.description %></p>
+    <div class="stats">
+      <a href="<%= url_for('/archives/') %>"><b><%= site.posts.length %></b><span>文章</span></a>
+      <a href="<%= url_for('/categories/') %>"><b><%= site.categories.length %></b><span>分类</span></a>
+      <a href="<%= url_for('/tags/') %>"><b><%= site.tags.length %></b><span>标签</span></a>
+    </div>
+  </section>
+
+  <% if (tocHtml) { %>
+    <section class="card toc-card">
+      <h2 class="card-title"><%- icon('book') %>目录</h2>
+      <%- tocHtml %>
+    </section>
+  <% } %>
+
+  <% if (!is_post()) { %>
+    <% if (mascot.profile && mascot.profile.length) { %>
+      <section class="card dossier">
+        <header class="dossier-head">
+          <span class="dossier-no">No.001</span>
+          <h2 class="card-title">看板娘档案</h2>
+        </header>
+        <dl>
+          <% mascot.profile.forEach(function (row) { %>
+            <div><dt><%= row[0] %></dt><dd><%= row[1] %></dd></div>
+          <% }); %>
+        </dl>
+        <p class="dossier-note">形象为 Claude 拟人化同人设定</p>
+      </section>
+    <% } %>
+
+    <% if (site.categories.length) { %>
+      <section class="card">
+        <h2 class="card-title"><%- icon('folder') %>分类</h2>
+        <ul class="cat-list">
+          <% site.categories.sort('name').each(function (cat) { %>
+            <li><a href="<%= url_for(cat.path) %>"><span><%= cat.name %></span><em><%= cat.length %></em></a></li>
+          <% }); %>
+        </ul>
+      </section>
+    <% } %>
+
+    <% if (site.tags.length) { %>
+      <section class="card">
+        <h2 class="card-title"><%- icon('tag') %>标签</h2>
+        <div class="tag-cloud">
+          <% site.tags.sort('name').each(function (tag) { %>
+            <a class="tag-chip" href="<%= url_for(tag.path) %>">#<%= tag.name %><em><%= tag.length %></em></a>
+          <% }); %>
+        </div>
+      </section>
+    <% } %>
+  <% } %>
+</aside>

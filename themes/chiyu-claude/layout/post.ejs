@@ -1,0 +1,25 @@
+<article class="card article">
+  <div class="markdown"><%- page.content %></div>
+
+  <% if (page.tags && page.tags.length) { %>
+    <div class="article-tags">
+      <% page.tags.each(function (tag) { %>
+        <a class="tag-chip" href="<%= url_for(tag.path) %>">#<%= tag.name %></a>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <dl class="article-note">
+    <div><dt>本文作者</dt><dd><%= config.author %></dd></div>
+    <div><dt>本文链接</dt><dd><a href="<%= url_for(page.path) %>"><%= full_url_for(page.path) %></a></dd></div>
+  </dl>
+</article>
+
+<nav class="post-nav">
+  <% if (page.prev) { %>
+    <a class="card post-nav-link" href="<%= url_for(page.prev.path) %>"><span>上一篇</span><%= page.prev.title %></a>
+  <% } else { %><span class="post-nav-link placeholder"></span><% } %>
+  <% if (page.next) { %>
+    <a class="card post-nav-link next" href="<%= url_for(page.next.path) %>"><span>下一篇</span><%= page.next.title %></a>
+  <% } else { %><span class="post-nav-link placeholder"></span><% } %>
+</nav>

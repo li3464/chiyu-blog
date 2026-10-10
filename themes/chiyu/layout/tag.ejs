@@ -1,0 +1,16 @@
+<article class="taxonomy">
+  <% if (page.tag) { %>
+    <h1 class="page-title">标签：#<%= page.tag %></h1>
+    <%- partial('_partial/post-list', { posts: page.posts }) %>
+  <% } else { %>
+    <h1 class="page-title">标签</h1>
+    <div class="taxonomy-list">
+      <% site.tags.each(function (tag) { %>
+        <a class="taxonomy-item" href="<%= url_for(tag.path) %>">
+          <span class="taxonomy-name">#<%= tag.name %></span>
+          <span class="taxonomy-count"><%= tag.length %></span>
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+</article>

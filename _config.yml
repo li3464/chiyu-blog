@@ -1,0 +1,103 @@
+# Hexo Configuration
+## 池鱼的博客 · 看板娘 Claude
+## 文档：https://hexo.io/zh-cn/docs/configuration.html
+
+# 站点信息 Site
+title: 池鱼的博客
+subtitle: 子非鱼，安知鱼之乐
+description: 池鱼的个人博客 —— 于文字间游弋，见天地，见自己。
+keywords: '池鱼, 博客, Claude, 文字'
+author: 池鱼
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL
+## 站点地址（GitHub Pages 自定义域名）
+url: https://shichiyuya.cloud
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # 设为 false 可从 permalink 去掉末尾的 index.html
+  trailing_html: true  # 设为 false 可从 permalink 去掉末尾的 .html
+
+# 目录 Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# 写作 Writing
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true # 外链在新标签页打开
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: false
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# 首页 Home page setting
+index_generator:
+  path: ''
+  per_page: 8
+  order_by: -date
+
+# 归档 Archive
+archive_generator:
+  enabled: true
+  per_page: 0
+  yearly: false
+  monthly: false
+  daily: false
+
+# 分类与标签 Category & Tag
+default_category: 未分类
+category_map:
+tag_map:
+
+# 元数据 Metadata elements
+meta_generator: false
+
+# 日期 / 时间格式 Date / Time format
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+updated_option: mtime
+
+# 分页 Pagination
+per_page: 8
+pagination_dir: page
+
+# 包含 / 排除 Include / Exclude
+include:
+exclude:
+ignore:
+
+# 扩展 Extensions
+## 插件：https://hexo.io/plugins/
+## 主题：https://hexo.io/themes/
+theme: chiyu-claude
+
+# 部署 Deployment
+## 文档：https://hexo.io/zh-cn/docs/one-command-deployment
+deploy:
+  type: ''

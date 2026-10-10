@@ -1,0 +1,32 @@
+<%- partial('_partial/head') %>
+<% var withHero = is_home() && page.current === 1; %>
+<body class="<%= withHero ? 'has-hero' : 'has-banner' %>">
+  <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+  <%- partial('_partial/header') %>
+
+  <% if (withHero) { %>
+    <%- partial('_partial/hero') %>
+  <% } else { %>
+    <%- partial('_partial/banner') %>
+  <% } %>
+
+  <div class="main" id="main">
+    <main class="main-col"><%- body %></main>
+    <%- partial('_partial/sidebar') %>
+  </div>
+
+  <%- partial('_partial/footer') %>
+  <% if (theme.player && theme.player.enable) { %><%- partial('_partial/player') %><% } %>
+
+  <button class="to-top" id="to-top" aria-label="回到顶部" hidden><%- icon('arrow-up') %></button>
+
+  <script>
+    window.CHIYU = <%- JSON.stringify({
+      search: url_for('/search.json'),
+      lines: (theme.mascot && theme.mascot.lines) || [],
+      tracks: (theme.player && theme.player.tracks) || []
+    }).replace(/</g, '\\u003c') %>;
+  </script>
+  <%- js('js/main') %>
+</body>
+</html>

@@ -1,0 +1,70 @@
+# 池鱼的博客 · 看板娘 Claude 主题配置
+
+# 导航菜单：有 children 的项会变成下拉菜单
+# icon 可选：home book info archive folder tag link image
+menu:
+  - name: 首页
+    url: /
+    icon: home
+  - name: 文章
+    icon: book
+    children:
+      - { name: 归档, url: /archives/, icon: archive }
+      - { name: 分类, url: /categories/, icon: folder }
+      - { name: 标签, url: /tags/, icon: tag }
+  - name: 关于
+    url: /about/
+    icon: info
+
+# 首页大图区
+hero:
+  title: 池鱼的博客
+  subtitle: 个人主页 · 微博客
+  # 标题下方的小标签，可写成 { text: B站：池鱼, url: https://space.bilibili.com/xxx }
+  chips:
+    - 摸鱼艺术家
+    - Claude 推
+    - 文字爱好者
+  lines:
+    - 记录生活，分享技术，留住书页间的瞬间
+    - 子非鱼，安知鱼之乐
+  side_text: 池鱼的博客呀
+  welcome: WELCOME TO MY BLOG, ENJOY YOUR STAY!
+
+# 看板娘
+mascot:
+  name: Claude
+  image: /images/claude.png
+  # 点击看板娘时随机说的话
+  lines:
+    - 欢迎来到池鱼的博客，今天想读点什么？
+    - 这本书里记着池鱼写下的每一篇文章哦。
+    - 让我想想……右上角可以切换白天和夜晚。
+    - 看累了的话，左下角的八音盒可以陪你一会儿。
+    - 发现错别字的话，我会悄悄记在小本本上。
+    - 往下翻就是最新的文章，慢慢看就好。
+  # 侧边栏「看板娘档案」，同人设定，可随意改
+  profile:
+    - [名字, Claude]
+    - [身份, 池鱼的博客 · 看板娘]
+    - [代表色, 晨曦橙]
+    - [随身物, 一本记满问答的书]
+    - [喜欢, 读书、写字、认真回答问题]
+    - [口头禅, 「让我想想……」]
+
+# 左下角播放器
+# src 留空时播放内置的八音盒旋律（按顺序轮流使用两首）；填入 mp3 地址则播放音频
+player:
+  enable: true
+  tracks:
+    - { title: 书页间的八音盒, artist: 池鱼, src: '' }
+    - { title: 午后的图书馆, artist: 池鱼, src: '' }
+
+# 字体样式表。国内访问慢可以把域名换成 fonts.loli.net
+fonts: https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@1,500&family=Noto+Serif+SC:wght@500;700&family=ZCOOL+QingKe+HuangYou&display=swap
+
+footer:
+  # 建站年份，版权栏显示
+  since: 2026
+  # 备案号（可留空，例如 '京ICP备XXXXXXXX号'）
+  icp: ''

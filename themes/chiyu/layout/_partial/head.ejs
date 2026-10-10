@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% var pageTitle = is_post() ? (page.title + ' · ' + config.title)
+      : is_home() ? (config.subtitle ? config.title + ' · ' + config.subtitle : config.title)
+      : (page.title ? page.title + ' · ' + config.title : config.title); %>
+  <title><%= pageTitle %></title>
+  <meta name="description" content="<%= page.description || config.description || '' %>">
+  <meta name="keywords" content="<%= page.keywords || config.keywords || '' %>">
+  <meta name="theme-color" content="#f6f3ea">
+  <link rel="icon" href="<%= url_for('/favicon.svg') %>" type="image/svg+xml">
+  <%- css('css/style') %>
+  <script>
+    // 尽早应用主题，避免页面闪烁
+    (function () {
+      var t;
+      try { t = localStorage.getItem('chiyu-theme'); } catch (e) {}
+      if (!t) { t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>

@@ -1,0 +1,16 @@
+<article class="taxonomy">
+  <% if (page.category) { %>
+    <h1 class="page-title">分类：<%= page.category %></h1>
+    <%- partial('_partial/post-list', { posts: page.posts }) %>
+  <% } else { %>
+    <h1 class="page-title">分类</h1>
+    <div class="taxonomy-list">
+      <% site.categories.each(function (cat) { %>
+        <a class="taxonomy-item" href="<%= url_for(cat.path) %>">
+          <span class="taxonomy-name"><%= cat.name %></span>
+          <span class="taxonomy-count"><%= cat.length %></span>
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+</article>

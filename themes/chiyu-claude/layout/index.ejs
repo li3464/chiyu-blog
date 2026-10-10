@@ -1,0 +1,6 @@
+<header class="section-head">
+  <h2>最新文章</h2>
+  <span>LATEST POSTS · 共 <%= site.posts.length %> 篇</span>
+</header>
+<%- partial('_partial/post-list', { posts: page.posts }) %>
+<%- partial('_partial/pagination') %>

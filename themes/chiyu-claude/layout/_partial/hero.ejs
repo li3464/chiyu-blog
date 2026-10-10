@@ -1,0 +1,64 @@
+<% var hero = theme.hero || {}; var mascot = theme.mascot || {}; %>
+<section class="hero" id="hero">
+  <canvas class="petals" id="petals" aria-hidden="true"></canvas>
+  <div class="hero-scene" aria-hidden="true">
+    <span class="hero-glow"></span>
+    <span class="hero-watermark"><%= mascot.name %></span>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-title"><%= hero.title || config.title %></h1>
+      <p class="hero-sub"><span><%= hero.subtitle %></span></p>
+
+      <% if (hero.chips && hero.chips.length) { %>
+        <ul class="chips">
+          <% hero.chips.forEach(function (chip) { var c = typeof chip === 'string' ? { text: chip } : chip; %>
+            <li>
+              <% if (c.url) { %><a class="chip" href="<%= c.url %>" target="_blank" rel="noopener"><% } else { %><span class="chip"><% } %>
+                <span class="chip-mark" aria-hidden="true">✦</span><%= c.text %>
+              <% if (c.url) { %></a><% } else { %></span><% } %>
+            </li>
+          <% }); %>
+        </ul>
+      <% } %>
+
+      <% if (hero.lines && hero.lines.length) { %>
+        <div class="hero-lines">
+          <% hero.lines.forEach(function (line) { %><p><%= line %></p><% }); %>
+        </div>
+      <% } %>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#main">进入主页 <%- icon('arrow') %></a>
+        <a class="btn btn-ghost" href="<%= url_for('/about/') %>">关于我 <%- icon('help') %></a>
+      </div>
+    </div>
+
+    <figure class="mascot" id="mascot">
+      <span class="window" aria-hidden="true"><span class="window-light"></span></span>
+      <%- partial('_partial/magic-circle', { id: 'hero' }) %>
+      <p class="bubble" id="bubble" role="status" aria-live="polite"></p>
+      <button class="mascot-btn" id="mascot-btn" type="button" aria-label="和 <%= mascot.name %> 说话">
+        <img src="<%= url_for(mascot.image) %>" alt="看板娘 <%= mascot.name %>" width="804" height="1440" fetchpriority="high" decoding="async">
+      </button>
+      <figcaption class="mascot-name">看板娘 · <%= mascot.name %></figcaption>
+    </figure>
+
+    <aside class="hero-side" aria-hidden="true">
+      <span class="side-no">/ 001</span>
+      <span class="side-blog">BLOG</span>
+      <span class="side-rule"></span>
+      <span class="side-en">THE KEEPER OF PAGES</span>
+      <span class="side-cn"><%= hero.side_text %></span>
+    </aside>
+
+    <div class="welcome">
+      <strong><%= config.author %>？</strong>
+      <span><%= hero.welcome %></span>
+      <svg class="welcome-arrow" viewBox="0 0 40 24" aria-hidden="true"><path d="M38 2C26 6 12 10 3 21M3 21l1-8M3 21l8-1"/></svg>
+    </div>
+  </div>
+
+  <a class="hero-scroll" href="#main" aria-label="向下浏览文章"><span></span></a>
+</section>

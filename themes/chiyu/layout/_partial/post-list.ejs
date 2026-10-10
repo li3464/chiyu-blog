@@ -1,0 +1,26 @@
+<div class="post-list">
+  <% posts.each(function (post) { %>
+    <article class="post-item">
+      <h2 class="post-title"><a href="<%= url_for(post.path) %>"><%= post.title %></a></h2>
+      <div class="post-meta">
+        <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, config.date_format) %></time>
+        <% if (post.categories && post.categories.length) { %>
+          <span class="meta-sep">·</span>
+          <% post.categories.each(function (cat) { %>
+            <a class="meta-link" href="<%= url_for(cat.path) %>"><%= cat.name %></a>
+          <% }); %>
+        <% } %>
+        <% if (post.tags && post.tags.length) { %>
+          <span class="meta-sep">·</span>
+          <% post.tags.each(function (tag) { %>
+            <a class="meta-link tag" href="<%= url_for(tag.path) %>">#<%= tag.name %></a>
+          <% }); %>
+        <% } %>
+      </div>
+      <div class="post-excerpt">
+        <% if (post.excerpt) { %><%- post.excerpt %><% } else { %><p><%= truncate(strip_html(post.content), { length: 160, omission: '…' }) %></p><% } %>
+      </div>
+      <a class="read-more" href="<%= url_for(post.path) %>">阅读全文 »</a>
+    </article>
+  <% }); %>
+</div>

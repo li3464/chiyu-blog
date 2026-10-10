@@ -1,0 +1,13 @@
+# 池鱼 · 水墨古风主题配置
+menu:
+  /: 首页
+  /archives/: 归档
+  /categories/: 分类
+  /tags/: 标签
+  /about/: 关于
+
+footer:
+  # 建站年份，版权栏显示
+  since: 2026
+  # 备案号（可留空，例如 '京ICP备XXXXXXXX号'）
+  icp: ''

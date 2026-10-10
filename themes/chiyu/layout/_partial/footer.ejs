@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <span class="footer-seal" aria-hidden="true">鱼</span>
+  <p class="footer-text">
+    © <%= theme.footer.since || new Date().getFullYear() %>
+    <a href="<%= url_for('/') %>"><%= config.title %></a>
+    <% if (config.author) { %> · <%= config.author %><% } %>
+  </p>
+  <p class="footer-line">鱼游于水，人游于文。</p>
+  <% if (theme.footer && theme.footer.icp) { %>
+    <p class="footer-icp"><%= theme.footer.icp %></p>
+  <% } %>
+  <p class="footer-powered">由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 · 主题「池鱼」</p>
+</footer>
